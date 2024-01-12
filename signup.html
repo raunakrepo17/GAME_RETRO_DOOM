@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css files/doom2.css">
+</head>
+<body>
+    <div class="image-container">
+        <img src="https://w.forfun.com/fetch/db/dbae1b4bc736d5befb9d1a64697c987b.jpeg" alt="image"width="1486" height="700">
+        <div class="text-container">
+       <pre> <div id="login">
+         <div id="you"><H3> SCOREBOARD:</H3></div>
+         <div id="input">
+        Username : <input id="Username" type="text">
+  Score Achieved : <input id="score" type="int">
+                  </div>
+                 <button id="addbtn"><a href="#">ADD</a></button>
+        </div></pre>
+    </div>
+    </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+        import {getDatabase, set, get, update, remove, ref, child } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyA_PM2VJLJnQ4FdKbZLbMOWaZ3noEnb4GE",
+          authDomain: "backend-d0855.firebaseapp.com",
+          databaseURL: "https://backend-d0855-default-rtdb.firebaseio.com",
+          projectId: "backend-d0855",
+          storageBucket: "backend-d0855.appspot.com",
+          messagingSenderId: "192468021460",
+          appId: "1:192468021460:web:52faa3fa05a604f61b0b41",
+          measurementId: "G-NLW2P875F2"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getDatabase();
+
+        
+        document.getElementById("addbtn").addEventListener("click", function() {
+            let Username = document.getElementById("#Username");
+            let score = document.getElementById("#score");
+             set(ref(db, "People/" + document.getElementById("Username").value), {
+                Username: document.getElementById("Username").value,
+                score : document.getElementById("score").value
+              })
+              .then(() => {
+                alert("Score Entered Sucessfully !!")
+              })
+              .catch((error) => {
+                alert(error)
+              })
+        } )
+      </script>
+
+</body>
+</html>
